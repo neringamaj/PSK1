@@ -1,11 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world"/>
-</f:view>
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>University Database Project</title>
+</head>
+<body>
+<div id="container">
+    <h1>University Database Project</h1>
+    <p>Welcome to our University Database Project. This project showcases our database's functionality with detailed information on courses, students, and extracurricular activities.</p>
+    <ul>
+        <li><h:link outcome="courses" value="Courses" /> - Explore the courses offered at our university.</li>
+        <li><h:link outcome="students" value="Students" /> - Learn more about our students and their academic progress.</li>
+        <li><h:link outcome="extracurriculars" value="Extracurriculars" /> - Discover the extracurricular activities available for student participation.</li>
+    </ul>
+</div>
+</body>
 </html>
