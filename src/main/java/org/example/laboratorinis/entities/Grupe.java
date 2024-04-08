@@ -2,7 +2,6 @@ package org.example.laboratorinis.entities;
 
 import javax.persistence.*;
 import java.util.List;
-import lombok.EqualsAndHashCode;
 
 @Entity
 public class Grupe {
