@@ -5,6 +5,7 @@
 
 <generatorConfiguration>
     <context id="LaboratorinisDB" targetRuntime="MyBatis3Simple">
+        <property name="overwrite" value="true"/>
         <jdbcConnection driverClass="org.h2.Driver"
                         connectionURL="jdbc:h2:~/h2database/LaboratorinisDB;AUTO_SERVER=TRUE"
                         userId="sa"

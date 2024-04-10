@@ -4,29 +4,33 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
-<h:head/>
+<h:head>
+    <title>Course Details</title>
+</h:head>
 <h:body>
     <h2>Students in #{courseDetails.course.name}:</h2>
     <ul>
-        <h:form>
-            <ui:repeat value="#{courseDetails.course.students}" var="student">
-                <li>
-                    #{student.name} (#{student.id})
-                    <h:commandButton value="Delete" action="#{courseDetails.deleteStudent(student.id)}">
-                    </h:commandButton>
-                </li>
-            </ui:repeat>
-        </h:form>
+        <ui:repeat value="#{courseDetails.course.students}" var="student">
+            <li class="student-info">
+                #{student.name} #{student.surname} \t
+                <h:commandButton value="Delete" action="#{courseDetails.deleteStudent(student.id)}" immediate="true">
+                    <f:param name="courseId" value="#{courseDetails.course.id}" />
+                    <f:ajax execute="@form" render="@form" />
+                </h:commandButton>
+            </li>
+        </ui:repeat>
     </ul>
 
     <h:form>
-        <h:inputText a:placeholder="Student Name" value="#{courseDetails.studentsToCreate.name}" required="true" />
-        <h:inputText a:placeholder="Student Surname" value="#{courseDetails.studentsToCreate.surname}" required="true" />
-        <h:commandButton value="Add Student to Course" action="#{courseDetails.addStudentToCourse}" >
+        <div class="form-group">
+            <h:inputText a:placeholder="Student Name" value="#{courseDetails.studentsToCreate.name}" required="true" />
+            <h:inputText a:placeholder="Student Surname" value="#{courseDetails.studentsToCreate.surname}" required="true" />
+        </div>
+        <h:commandButton value="Add Student to Course" action="#{courseDetails.addStudentToCourse}">
             <f:param name="courseId" value="#{courseDetails.course.id}" />
         </h:commandButton>
     </h:form>
 
-    <h:link outcome="index" value="Back to index page"/>
+    <h:link outcome="index" value="Back to index page" style="display: block; margin-top: 20px;"/>
 </h:body>
 </html>

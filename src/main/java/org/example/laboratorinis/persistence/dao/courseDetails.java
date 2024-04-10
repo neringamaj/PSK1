@@ -3,7 +3,9 @@ package org.example.laboratorinis.persistence.dao;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.Map;
@@ -14,6 +16,9 @@ import org.example.laboratorinis.entities.Course;
 import org.example.laboratorinis.entities.Student;
 
 @Model
+@ViewScoped
+@Named
+@Getter @Setter
 public class courseDetails implements Serializable {
 
     @Inject
@@ -33,20 +38,24 @@ public class courseDetails implements Serializable {
         Map<String, String> requestParameters =
                 FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         String idStr = requestParameters.get("courseId");
-        Integer id = Integer.parseInt(idStr);
+        Integer id = null;
+        id = Integer.parseInt(idStr);
+
         this.course = coursesDao.findOne(id);
     }
 
     @Transactional
-    public void addStudentToCourse() {
+    public String addStudentToCourse() {
         studentsToCreate.setCourse(this.course);
         studentDao.persist(studentsToCreate);
         studentsToCreate = new Student();
+        return "index";
     }
 
     @Transactional
     public String deleteStudent(Integer studentId) {
         studentDao.delete(studentId);
+        course.getStudents().removeIf(student -> student.getId().equals(studentId));
         return "index";
     }
 }

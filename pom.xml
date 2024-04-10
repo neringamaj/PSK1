@@ -56,7 +56,8 @@
                     <artifactId>mybatis-generator-maven-plugin</artifactId>
                     <version>1.4.0</version>
                     <configuration>
-                        <contexts>LaboratorinisDB</contexts>
+                        <configurationFile>src/main/resources/generatorConfig.xml</configurationFile>
+                        <overwrite>true</overwrite>
                         <verbose>true</verbose>
                     </configuration>
                     <executions>

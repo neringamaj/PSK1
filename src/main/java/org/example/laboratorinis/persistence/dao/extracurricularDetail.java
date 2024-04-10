@@ -46,7 +46,7 @@ public class extracurricularDetail implements Serializable {
     }
 
     @Transactional
-    public void addStudentToExtracurricular() {
+    public String addStudentToExtracurricular() {
         Student student = studentDao.findByNameAndSurname(studentsToCreate.getName(), studentsToCreate.getSurname());
 
         if (student == null) {
@@ -62,11 +62,14 @@ public class extracurricularDetail implements Serializable {
         }
 
         studentDao.persist(student);
+
+        return "index";
     }
 
     @Transactional
     public String deleteStudent(Integer studentId) {
         studentDao.delete(studentId);
+        extracurriculars.getStudents().removeIf(student -> student.getId().equals(studentId));
         return "index";
     }
 }
