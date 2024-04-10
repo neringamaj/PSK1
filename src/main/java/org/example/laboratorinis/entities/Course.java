@@ -23,25 +23,28 @@ public class Course {
     private Integer id;
 
     @Basic(optional = false)
-    private String specialty;
+    private String name;
 
     @Basic(optional = false)
-    private Integer kursas;
+    private Integer year;
 
-    @OneToMany(mappedBy = "grupe")
+    @OneToMany(mappedBy = "course")
     private List<Student> students = new ArrayList<>();
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Course team = (Course) o;
-        return Objects.equals(specialty, team.specialty);
+        return Objects.equals(name, team.name);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(specialty);
+        return Objects.hash(name);
     }
+
 }
+

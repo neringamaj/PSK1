@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomee>
+    <!-- H2 Database -->
+    <Resource id="LaboratorinisDataSource" type="DataSource">
+        JdbcDriver org.h2.Driver
+        JdbcUrl jdbc:h2:~/h2database/LaboratorinisDB;AUTO_SERVER=TRUE
+        UserName sa
+        Password sa
+        JtaManaged false
+        InitialSize 1
+        MaxActive 20
+        MaxWait 10000
+        MaxIdle 10
+        MinIdle 2
+        ValidationQuery SELECT 1
+        TestOnBorrow true
+        TestWhileIdle true
+        TimeBetweenEvictionRunsMillis 120000
+        RemoveAbandoned true
+        RemoveAbandonedTimeout 600
+        LogAbandoned true
+        JmxEnabled true
+    </Resource>
+</tomee>

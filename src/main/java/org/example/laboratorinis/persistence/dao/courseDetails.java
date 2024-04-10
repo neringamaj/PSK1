@@ -1,4 +1,4 @@
-package org.example.laboratorinis.persistence;
+package org.example.laboratorinis.persistence.dao;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
@@ -10,7 +10,6 @@ import java.util.Map;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.example.laboratorinis.interceptors.LoggedInvocation;
 import org.example.laboratorinis.entities.Course;
 import org.example.laboratorinis.entities.Student;
 
@@ -33,17 +32,21 @@ public class courseDetails implements Serializable {
     public void init() {
         Map<String, String> requestParameters =
                 FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        Integer teamId = Integer.parseInt(requestParameters.get("teamId"));
-        this.course = coursesDao.findOne(teamId);
+        String idStr = requestParameters.get("courseId");
+        Integer id = Integer.parseInt(idStr);
+        this.course = coursesDao.findOne(id);
     }
 
     @Transactional
-    @LoggedInvocation
     public void addStudentToCourse() {
-        studentsToCreate.setGrupe(this.course);
+        studentsToCreate.setCourse(this.course);
         studentDao.persist(studentsToCreate);
+        studentsToCreate = new Student();
     }
 
-    public void deleteStudent(Integer id) {
+    @Transactional
+    public String deleteStudent(Integer studentId) {
+        studentDao.delete(studentId);
+        return "index";
     }
 }

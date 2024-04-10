@@ -6,16 +6,19 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:body>
-    <h2>Courses:</h2>
+    <h2>Extracurricular activities:</h2>
     <ol>
-        <ui:repeat value="#{courses.allCourses}" var="course">
-            <li><h:link value="#{course.specialty}" outcome="players?teamId=#{course.id}" /></li>
+        <ui:repeat value="#{extracurriculars.extracurricularsAll}" var="course">
+            <li>
+                <h:outputText value="#{course.name}"/>
+                <h:link value="Student list" outcome="studentsExtracurriculars">
+                    <f:param name="extracurricularId" value="#{course.id}" />
+                </h:link></li>
         </ui:repeat>
     </ol>
     <h:form>
-        <h:inputText value="#{courses.courseToCreate.specialty}" required="true" />
-        <h:commandButton value="Add new team" actionListener="#{courses.createCourse()}" action="index?faces-redirect=true"/>
+        <h:inputText value="#{extracurriculars.extracurricularToCreate.name}" required="true" placeholder="Extracurricular activity name"/>
+        <h:commandButton value="Add new extracurricular activity" actionListener="#{extracurriculars.createExtracurricular()}" action="index?faces-redirect=true"/>
     </h:form>
-    <h:link outcome="myBatis/teams" value="MyBatis implementation"/>
 </h:body>
 </html>

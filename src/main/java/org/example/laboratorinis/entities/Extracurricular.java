@@ -22,22 +22,22 @@ public class Extracurricular {
     private Integer id;
 
     @Basic(optional = false)
-    private String pavadinimas;
+    private String name;
 
-    @ManyToMany(mappedBy = "pasirenkamiKursai")
-    private List<Student> studentai;
+    @ManyToMany(mappedBy = "extracurricular")
+    private List<Student> students;
 
-    @Override
+    /*@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Extracurricular team = (Extracurricular) o;
-        return Objects.equals(pavadinimas, team.pavadinimas);
+        return Objects.equals(name, team.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(pavadinimas);
-    }
+        return Objects.hash(name);
+    }*/
 }
 

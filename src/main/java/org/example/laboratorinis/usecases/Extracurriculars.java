@@ -3,7 +3,7 @@ package org.example.laboratorinis.usecases;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.laboratorinis.entities.Extracurricular;
-import org.example.laboratorinis.persistence.ExtracurricularsDao;
+import org.example.laboratorinis.persistence.dao.ExtracurricularsDao;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;

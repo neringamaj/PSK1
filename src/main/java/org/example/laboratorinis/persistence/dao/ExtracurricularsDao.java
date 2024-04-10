@@ -1,4 +1,4 @@
-package org.example.laboratorinis.persistence;
+package org.example.laboratorinis.persistence.dao;
 
 import org.example.laboratorinis.entities.Course;
 

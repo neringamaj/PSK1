@@ -3,7 +3,7 @@ package org.example.laboratorinis.usecases;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.laboratorinis.entities.Course;
-import org.example.laboratorinis.persistence.CoursesDao;
+import org.example.laboratorinis.persistence.dao.CoursesDao;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
