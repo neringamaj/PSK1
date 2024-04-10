@@ -12,7 +12,7 @@
     <ul>
         <ui:repeat value="#{courseDetails.course.students}" var="student">
             <li class="student-info">
-                #{student.name} #{student.surname} \t
+                #{student.name} #{student.surname}
                 <h:commandButton value="Delete" action="#{courseDetails.deleteStudent(student.id)}" immediate="true">
                     <f:param name="courseId" value="#{courseDetails.course.id}" />
                     <f:ajax execute="@form" render="@form" />

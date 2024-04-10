@@ -14,7 +14,7 @@
         <h:form>
             <ui:repeat value="#{extracurricularDetail.extracurriculars.students}" var="student">
                 <li>
-                    #{student.name} #{student.surname} \t
+                    #{student.name} #{student.surname}
                     <h:commandButton value="Delete" action="#{extracurricularDetail.deleteStudent(student.id)}" immediate="true">
                         <f:param name="extracurricularId" value="#{extracurricularDetail.extracurriculars.id}"/>
                         <f:ajax execute="@form" render="@form"/>

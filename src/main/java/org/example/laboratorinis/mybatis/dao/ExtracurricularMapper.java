@@ -2,7 +2,7 @@ package org.example.laboratorinis.mybatis.dao;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
+import org.mybatis.cdi.Mapper;
 import org.example.laboratorinis.mybatis.model.Extracurricular;
 
 @Mapper

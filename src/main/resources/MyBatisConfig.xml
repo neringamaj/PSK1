@@ -17,8 +17,8 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="org/example/laboratorinis/mybatis/xml/CourseMapper.xml"/>
-        <mapper resource="org/example/laboratorinis/mybatis/xml/StudentMapper.xml"/>
-        <mapper resource="org/example/laboratorinis/mybatis/xml/ExtracurricularMapper.xml"/>
+        <mapper resource="org.example.laboratorinis.mybatis.xml/CourseMapper.xml"/>
+        <mapper resource="org.example.laboratorinis.mybatis.xml/StudentMapper.xml"/>
+        <mapper resource="org.example.laboratorinis.mybatis.xml/ExtracurricularMapper.xml"/>
     </mappers>
 </configuration>

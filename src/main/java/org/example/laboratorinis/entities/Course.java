@@ -22,6 +22,7 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "name")
     @Basic(optional = false)
     private String name;
 
@@ -30,7 +31,6 @@ public class Course {
 
     @OneToMany(mappedBy = "course")
     private List<Student> students = new ArrayList<>();
-
 
     @Override
     public boolean equals(Object o) {
@@ -45,6 +45,5 @@ public class Course {
 
         return Objects.hash(name);
     }
-
 }
 

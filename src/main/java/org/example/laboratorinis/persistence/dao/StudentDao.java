@@ -1,5 +1,6 @@
 package org.example.laboratorinis.persistence.dao;
 
+import org.example.laboratorinis.entities.Extracurricular;
 import org.example.laboratorinis.entities.Student;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -32,6 +33,17 @@ public class StudentDao {
             student = em.merge(student);
         }
         em.remove(student);
+    }
+
+    public void deleteExtracurricular(Integer studentId, Extracurricular extracurricular) {
+        Student student = findOne(studentId);
+
+        if (!em.contains(student)) {
+            student = em.merge(student);
+        }
+
+        student.getExtracurricular().remove(extracurricular);
+        em.merge(student);
     }
 
     public List<Student> loadAll() {return em.createNamedQuery("Student.findAll", Student.class).getResultList();}

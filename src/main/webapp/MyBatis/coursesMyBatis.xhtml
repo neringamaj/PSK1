@@ -10,13 +10,13 @@
     <ol>
         <ui:repeat value="#{coursesMyBatis.allCourses}" var="course">
             <li>
-                <h:outputText value="#{course.specialty}"/>
-                <h:link value="Student list" outcome="students?courseId=#{course.id}" /></li>
+                <h:outputText value="#{course.name}"/>
+                <h:link value="Student list" outcome="studentsMyBatis?courseId=#{course.id}" /></li>
         </ui:repeat>
     </ol>
     <h:form>
-        <h:inputText value="#{coursesMyBatis.courseToCreate.specialty}" required="true" placeholder="Course name"/>
-        <h:inputText value="#{coursesMyBatis.courseToCreate.kursas}" required="true" placeholder="Course year"/>
+        <h:inputText value="#{coursesMyBatis.courseToCreate.name}" required="true" placeholder="Course name"/>
+        <h:inputText value="#{coursesMyBatis.courseToCreate.year}" required="true" placeholder="Course year"/>
         <h:commandButton value="Add new course" actionListener="#{coursesMyBatis.createCourse()}" action="index?faces-redirect=true"/>
     </h:form>
 </h:body>

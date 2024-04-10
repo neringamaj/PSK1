@@ -30,7 +30,7 @@ public class extracurricularDetail implements Serializable {
     private Student studentsToCreate = new Student();
 
     @Getter @Setter
-    private Integer extracurricularId; // Add this field
+    private Integer extracurricularId;
 
     @PostConstruct
     public void init() {
@@ -68,7 +68,7 @@ public class extracurricularDetail implements Serializable {
 
     @Transactional
     public String deleteStudent(Integer studentId) {
-        studentDao.delete(studentId);
+        studentDao.deleteExtracurricular(studentId, this.extracurriculars);
         extracurriculars.getStudents().removeIf(student -> student.getId().equals(studentId));
         return "index";
     }

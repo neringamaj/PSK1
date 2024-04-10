@@ -19,13 +19,13 @@ public class CoursesMyBatis implements Serializable {
     private CourseMapper courseMapper;
 
     @Getter
-    private List<org.example.laboratorinis.mybatis.model.Course> allCourses;
+    private List<Course> allCourses;
 
     @Getter @Setter
     private Course courseToCreate = new Course();
 
     @PostConstruct
-    public void init(){this.loadAllCourses();}
+    public void init(){loadAllCourses();}
 
     private void loadAllCourses(){this.allCourses = courseMapper.selectAll();}
 
