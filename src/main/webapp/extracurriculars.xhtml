@@ -6,16 +6,22 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:body>
-    <h2>Extracurricular activities:</h2>
-    <ol>
+    <table>
+        <thead>
+        <tr>
+            <th>Extracurricular activity</th>
+            <th>Students</th>
+        </tr>
+        </thead>
+        <tbody>
         <ui:repeat value="#{extracurriculars.extracurricularsAll}" var="course">
-            <li>
-                <h:outputText value="#{course.name}"/>
-                <h:link value="Student list" outcome="studentsExtracurriculars">
-                    <f:param name="extracurricularId" value="#{course.id}" />
-                </h:link></li>
+            <tr>
+                <td>#{course.name}</td>
+                <td><h:link value="Student list" outcome="studentsExtracurriculars?extracurricularId=#{course.id}"/></td>
+            </tr>
         </ui:repeat>
-    </ol>
+        </tbody>
+    </table>
     <h:form>
         <h:inputText value="#{extracurriculars.extracurricularToCreate.name}" required="true" placeholder="Extracurricular activity name"/>
         <h:commandButton value="Add new extracurricular activity" actionListener="#{extracurriculars.createExtracurricular()}" action="index?faces-redirect=true"/>

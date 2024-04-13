@@ -6,14 +6,22 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:body>
-    <h2>Courses:</h2>
-    <ol>
+    <table>
+        <thead>
+        <tr>
+            <th>Course</th>
+            <th>Students</th>
+        </tr>
+        </thead>
+        <tbody>
         <ui:repeat value="#{courses.allCourses}" var="course">
-            <li>
-                <h:outputText value="#{course.name}"/>
-                <h:link value="Student list" outcome="students?courseId=#{course.id}" /></li>
+            <tr>
+                <td>#{course.name}</td>
+                <td><h:link value="Student list" outcome="students?courseId=#{course.id}" /></td>
+            </tr>
         </ui:repeat>
-    </ol>
+        </tbody>
+    </table>
     <h:form>
         <h:inputText value="#{courses.courseToCreate.name}" required="true" placeholder="Course name"/>
         <h:inputText value="#{courses.courseToCreate.year}" required="true" placeholder="Course year"/>

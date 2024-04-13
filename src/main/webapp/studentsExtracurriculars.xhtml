@@ -4,33 +4,45 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
-<h:head/>
-<h:body>
-    <f:metadata>
-        <f:viewParam name="extracurricularId" value="#{extracurricularDetail.extracurricularId}" />
-    </f:metadata>
-    <h2>Students in #{extracurricularDetail.extracurriculars.name}:</h2>
-    <ul>
-        <h:form>
-            <ui:repeat value="#{extracurricularDetail.extracurriculars.students}" var="student">
-                <li>
-                    #{student.name} #{student.surname}
-                    <h:commandButton value="Delete" action="#{extracurricularDetail.deleteStudent(student.id)}" immediate="true">
-                        <f:param name="extracurricularId" value="#{extracurricularDetail.extracurriculars.id}"/>
-                        <f:ajax execute="@form" render="@form"/>
-                    </h:commandButton>
-                </li>
-            </ui:repeat>
-        </h:form>
-    </ul>
-    <h:form>
+<head>
+    <title>Extracurricular activity Details</title>
+</head>
+<body>
+<h2>Students in #{extracurricularDetail.extracurriculars.name}:</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+        <ui:repeat value="#{extracurricularDetail.extracurriculars.students}" var="student">
+            <tr>
+                <td>#{student.name}</td>
+                <td>#{student.surname}</td>
+                <td>
+                    <h:form>
+                        <h:commandButton value="Delete" action="#{extracurricularDetail.deleteStudent(student.id)}" immediate="true">
+                        <f:param name="extracurricularId" value="#{extracurricularDetail.extracurriculars.id}"/></h:commandButton>
+                    </h:form>
+                </td>
+            </tr>
+        </ui:repeat>
+    </tbody>
+</table>
+
+<h:form>
+    <div class="form-group">
         <h:inputText a:placeholder="Student Name" value="#{extracurricularDetail.studentsToCreate.name}" required="true" />
         <h:inputText a:placeholder="Student Surname" value="#{extracurricularDetail.studentsToCreate.surname}" required="true" />
-        <h:commandButton value="Add Student to Course"
-                         action="#{extracurricularDetail.addStudentToExtracurricular()}">
+        <h:commandButton value="Add Student to Extracurricular" action="#{extracurricularDetail.addStudentToExtracurricular}">
             <f:param name="extracurricularId" value="#{extracurricularDetail.extracurriculars.id}" />
         </h:commandButton>
-    </h:form>
-    <h:link outcome="index" value="Back to courses page"/>
-</h:body>
+    </div>
+</h:form>
+
+<h:link outcome="index" value="Back to courses page"/>
+</body>
 </html>

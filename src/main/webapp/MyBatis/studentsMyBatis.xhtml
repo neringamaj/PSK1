@@ -9,21 +9,26 @@
 </h:head>
 <h:body>
     <h2>Students in #{courseDetailsMyBatis.course.name}:</h2>
-    <ul>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
         <ui:repeat value="#{courseDetailsMyBatis.studentDao.selectAll()}" var="student">
-            <li class="student-info">
-                <h:form>
-                    #{student.name} #{student.surname}
-                    <h:commandButton value="Delete" action="#{courseDetailsMyBatis.deleteStudent(student.id)}" immediate="true">
-                        <f:param name="courseId" value="#{courseDetailsMyBatis.course.id}" />
-                        <f:ajax execute="@form" render="@form" />
-                    </h:commandButton>
-                </h:form>
-
-            </li>
+            <tr>
+                <td>#{student.name}</td>
+                <td>#{student.surname}</td>
+                <td><h:commandButton value="Delete" action="#{courseDetailsMyBatis.deleteStudent(student.id)}" immediate="true">
+                    <f:param name="courseId" value="#{courseDetailsMyBatis.course.id}" />
+                </h:commandButton></td>
+            </tr>
         </ui:repeat>
-    </ul>
-
+        </tbody>
+    </table>
     <h:form>
         <div class="form-group">
             <h:inputText a:placeholder="Student Name" value="#{courseDetailsMyBatis.studentsToCreate.name}" required="true" />

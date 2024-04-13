@@ -4,33 +4,41 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
-<h:head>
+<head>
     <title>Course Details</title>
-</h:head>
-<h:body>
-    <h2>Students in #{courseDetails.course.name}:</h2>
-    <ul>
-        <ui:repeat value="#{courseDetails.course.students}" var="student">
-            <li class="student-info">
-                #{student.name} #{student.surname}
-                <h:commandButton value="Delete" action="#{courseDetails.deleteStudent(student.id)}" immediate="true">
-                    <f:param name="courseId" value="#{courseDetails.course.id}" />
-                    <f:ajax execute="@form" render="@form" />
-                </h:commandButton>
-            </li>
-        </ui:repeat>
-    </ul>
+</head>
+<body>
+<h2>Students in #{courseDetails.course.name}:</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Actions</th>
+    </tr>
+    <ui:repeat value="#{courseDetails.course.students}" var="student">
+        <tr>
+            <td>#{student.name}</td>
+            <td>#{student.surname}</td>
+            <td>
+                <h:form>
+                    <h:commandButton value="Delete" action="#{courseDetails.deleteStudent(student.id)}" immediate="true">
+                    <f:param name="courseId" value="#{courseDetails.course.id}" /></h:commandButton>
+                </h:form>
+            </td>
+        </tr>
+    </ui:repeat>
+</table>
 
-    <h:form>
-        <div class="form-group">
-            <h:inputText a:placeholder="Student Name" value="#{courseDetails.studentsToCreate.name}" required="true" />
-            <h:inputText a:placeholder="Student Surname" value="#{courseDetails.studentsToCreate.surname}" required="true" />
-        </div>
-        <h:commandButton value="Add Student to Course" action="#{courseDetails.addStudentToCourse}">
-            <f:param name="courseId" value="#{courseDetails.course.id}" />
-        </h:commandButton>
-    </h:form>
+<h:form>
+    <div class="form-group">
+        <h:inputText a:placeholder="Student Name" value="#{courseDetails.studentsToCreate.name}" required="true" />
+        <h:inputText a:placeholder="Student Surname" value="#{courseDetails.studentsToCreate.surname}" required="true" />
+    </div>
+    <h:commandButton value="Add Student to Course" action="#{courseDetails.addStudentToCourse}">
+        <f:param name="courseId" value="#{courseDetails.course.id}" />
+    </h:commandButton>
+</h:form>
 
-    <h:link outcome="index" value="Back to index page" style="display: block; margin-top: 20px;"/>
-</h:body>
+<h:link outcome="index" value="Back to index page"/>
+</body>
 </html>
