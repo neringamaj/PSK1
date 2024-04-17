@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 <h:body>
     <table>
         <thead>
@@ -23,8 +23,8 @@
         </tbody>
     </table>
     <h:form>
-        <h:inputText value="#{extracurriculars.extracurricularToCreate.name}" required="true" placeholder="Extracurricular activity name"/>
-        <h:commandButton value="Add new extracurricular activity" actionListener="#{extracurriculars.createExtracurricular()}" action="index?faces-redirect=true"/>
+        <h:inputText value="#{extracurriculars.extracurricularToCreate.name}" required="true" a:placeholder="Extracurricular activity name"/>
+        <h:commandButton value="Add new extracurricular activity" actionListener="#{extracurriculars.createExtracurricular()}" action="extracurriculars?faces-redirect=true"/>
     </h:form>
 </h:body>
 </html>

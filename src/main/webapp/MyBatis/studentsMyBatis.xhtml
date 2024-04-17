@@ -8,7 +8,9 @@
     <title>Course Details</title>
 </h:head>
 <h:body>
-    <h2>Students in #{courseDetailsMyBatis.course.name}:</h2>
+    <h2>MyBatis Students in #{courseDetailsMyBatis.course.name}:</h2>
+
+    <h:form rendered="#{not empty courseDetailsMyBatis.course.students}">
     <table>
         <thead>
         <tr>
@@ -18,17 +20,24 @@
         </tr>
         </thead>
         <tbody>
-        <ui:repeat value="#{courseDetailsMyBatis.studentDao.selectAll()}" var="student">
+        <ui:repeat value="#{courseDetailsMyBatis.course.students}" var="student">
             <tr>
                 <td>#{student.name}</td>
                 <td>#{student.surname}</td>
-                <td><h:commandButton value="Delete" action="#{courseDetailsMyBatis.deleteStudent(student.id)}" immediate="true">
-                    <f:param name="courseId" value="#{courseDetailsMyBatis.course.id}" />
-                </h:commandButton></td>
+                <td>
+                        <h:commandButton value="Delete" action="#{courseDetailsMyBatis.deleteStudent(student.id)}" immediate="true">
+                            <f:param name="courseId" value="#{courseDetailsMyBatis.course.id}" /></h:commandButton>
+                </td>
             </tr>
         </ui:repeat>
         </tbody>
     </table>
+    </h:form>
+
+    <h:panelGroup rendered="#{empty courseDetailsMyBatis.course.students}">
+        <p>This course has no students in it.</p>
+    </h:panelGroup>
+
     <h:form>
         <div class="form-group">
             <h:inputText a:placeholder="Student Name" value="#{courseDetailsMyBatis.studentsToCreate.name}" required="true" />
@@ -38,7 +47,5 @@
             <f:param name="courseId" value="#{courseDetailsMyBatis.course.id}" />
         </h:commandButton>
     </h:form>
-
-    <h:link outcome="http://localhost:8092/laboratorinis/" value="Back to index page" style="display: block; margin-top: 20px;"/>
 </h:body>
 </html>

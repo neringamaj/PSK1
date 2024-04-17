@@ -10,8 +10,7 @@ import java.util.Objects;
 
 @Entity
 @NamedQueries({@NamedQuery(name = "Student.findAll", query = "select a from Student as a"),
-        @NamedQuery(name = "Student.findAllCourseStudents", query = "select a from Student as a where a.course = :id"),
-        @NamedQuery(name = "Student.findByNameAndSurname", query = "select a from Student as a where a.name = :name and a.surname = :surname")})
+        @NamedQuery(name = "Student.findAllCourseStudents", query = "select a from Student as a where a.course = :id")})
 @Table(name = "STUDENT")
 @Getter @Setter
 public class Student implements Serializable {

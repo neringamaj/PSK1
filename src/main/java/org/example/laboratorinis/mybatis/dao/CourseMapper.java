@@ -2,6 +2,7 @@ package org.example.laboratorinis.mybatis.dao;
 
 import java.util.List;
 
+import org.example.laboratorinis.mybatis.model.Student;
 import org.mybatis.cdi.Mapper;
 import org.example.laboratorinis.mybatis.model.Course;
 
@@ -46,4 +47,8 @@ public interface CourseMapper {
      * @mbg.generated Wed Apr 10 13:15:35 EEST 2024
      */
     int updateByPrimaryKey(Course record);
+
+    Course selectCourseById(Integer id);
+
+    List<Student> selectStudentsForCourse(Integer id);
 }

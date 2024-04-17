@@ -21,11 +21,25 @@ public class Extracurricular {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Extracurricular that = (Extracurricular) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
     @Basic(optional = false)
     private String name;
 
     @ManyToMany(mappedBy = "extracurricular")
     private List<Student> students;
+
 
 }
 

@@ -5,7 +5,6 @@ import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.Map;
@@ -17,8 +16,6 @@ import org.example.laboratorinis.entities.Student;
 
 @Model
 @ViewScoped
-@Named
-@Getter @Setter
 public class courseDetails implements Serializable {
 
     @Inject
@@ -49,13 +46,13 @@ public class courseDetails implements Serializable {
         studentsToCreate.setCourse(this.course);
         studentDao.persist(studentsToCreate);
         studentsToCreate = new Student();
-        return "index";
+        return "students.xhtml?faces-redirect=true&courseId=" + course.getId();
     }
 
     @Transactional
     public String deleteStudent(Integer studentId) {
         studentDao.delete(studentId);
         course.getStudents().removeIf(student -> student.getId().equals(studentId));
-        return "index";
+        return "students.xhtml?faces-redirect=true&courseId=" + course.getId();
     }
 }

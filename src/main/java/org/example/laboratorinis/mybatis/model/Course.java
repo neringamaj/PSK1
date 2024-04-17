@@ -1,5 +1,7 @@
 package org.example.laboratorinis.mybatis.model;
 
+import java.util.List;
+
 public class Course {
     /**
      *
@@ -98,5 +100,20 @@ public class Course {
      */
     public void setYear(Integer year) {
         this.year = year;
+    }
+
+    //additionally setting one to many relationship
+    private List<Student> students;
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    public void addStudent(Student student){
+        this.students.add(student);
     }
 }

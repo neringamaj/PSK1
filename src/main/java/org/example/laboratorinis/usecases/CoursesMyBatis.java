@@ -34,8 +34,6 @@ public class CoursesMyBatis implements Serializable {
         this.courseMapper.insert(courseToCreate);
         loadAllCourses();
         courseToCreate = new Course();
-        //courseMapper.insert(courseToCreate);
-        //return "myBatis/courses?faces-redirect=true";
     }
 
 }

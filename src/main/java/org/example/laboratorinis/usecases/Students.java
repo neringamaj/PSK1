@@ -2,7 +2,9 @@ package org.example.laboratorinis.usecases;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.laboratorinis.entities.Course;
 import org.example.laboratorinis.entities.Student;
+import org.example.laboratorinis.persistence.dao.CoursesDao;
 import org.example.laboratorinis.persistence.dao.StudentDao;
 
 import javax.annotation.PostConstruct;
@@ -17,6 +19,12 @@ public class Students {
     @Inject
     private StudentDao studentDao;
 
+    @Inject
+    private CoursesDao coursesDao;
+
+    @Getter @Setter
+    private Course course = new Course();
+
     @Getter @Setter
     private Student studentToCreate = new Student();
 
@@ -30,6 +38,7 @@ public class Students {
 
     @Transactional
     public void createStudent(){
+        studentToCreate.setCourse(coursesDao.findOne(course.getId()));
         this.studentDao.persist(studentToCreate);
     }
 
@@ -37,7 +46,10 @@ public class Students {
         this.allStudents = studentDao.loadAll();
     }
 
-    private void loadAllCourseStudents(Integer id){
-        this.allCourseStudents = studentDao.loadAllCourseStudents(id);
+    @Transactional
+    public String deleteStudent(Integer id){
+        this.studentDao.delete(id);
+        return "studentsList?faces-redirect=true";
     }
+
 }

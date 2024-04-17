@@ -12,15 +12,12 @@ import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.Map;
 
 @Model
 @ViewScoped
-@Named
-@Getter @Setter
 public class courseDetailsMyBatis implements Serializable {
 
     @Inject
@@ -43,21 +40,23 @@ public class courseDetailsMyBatis implements Serializable {
         Integer id = null;
         id = Integer.parseInt(idStr);
 
-        this.course = coursesDao.selectByPrimaryKey(id);
+        this.course = coursesDao.selectCourseById(id);
+        this.course.setStudents(coursesDao.selectStudentsForCourse(id));
     }
 
     @Transactional
     public String addStudentToCourse() {
         studentsToCreate.setCourseId(this.course.getId());
-        studentDao.insert(studentsToCreate);
+        int studentId = studentDao.insert(studentsToCreate);
         studentsToCreate = new Student();
-        return "http://localhost:8092/laboratorinis/";
+        course.addStudent(studentDao.selectByPrimaryKey(studentId));
+        return "studentsMyBatis.xhtml?faces-redirect=true&courseId=" + course.getId();
     }
 
     @Transactional
-    public String deleteStudent(Integer studentId) {
-        studentDao.deleteByPrimaryKey(studentId);
-        studentDao.selectAll();
-        return "http://localhost:8092/laboratorinis/";
+    public String deleteStudent(Integer id) {
+        studentDao.deleteByPrimaryKey(id);
+        course.setStudents(coursesDao.selectStudentsForCourse(this.course.getId()));
+        return "studentsMyBatis.xhtml?faces-redirect=true&courseId=" + course.getId();
     }
 }

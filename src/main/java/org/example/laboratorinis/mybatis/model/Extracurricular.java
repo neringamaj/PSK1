@@ -1,5 +1,7 @@
 package org.example.laboratorinis.mybatis.model;
 
+import java.util.List;
+
 public class Extracurricular {
     /**
      *
@@ -65,5 +67,20 @@ public class Extracurricular {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    //additionally setting many to many relationship
+    private List<Student> students;
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    public void addStudent(Student student) {
+        this.students.add(student);
+    }
+
+    public List<Student> getStudents() {
+        return students;
     }
 }

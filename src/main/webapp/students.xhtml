@@ -9,6 +9,8 @@
 </head>
 <body>
 <h2>Students in #{courseDetails.course.name}:</h2>
+
+<h:form rendered="#{not empty courseDetails.course.students}">
 <table>
     <tr>
         <th>Name</th>
@@ -20,14 +22,18 @@
             <td>#{student.name}</td>
             <td>#{student.surname}</td>
             <td>
-                <h:form>
                     <h:commandButton value="Delete" action="#{courseDetails.deleteStudent(student.id)}" immediate="true">
                     <f:param name="courseId" value="#{courseDetails.course.id}" /></h:commandButton>
-                </h:form>
+
             </td>
         </tr>
     </ui:repeat>
 </table>
+</h:form>
+
+<h:panelGroup rendered="#{empty courseDetails.course.students}">
+    <p>This course has no students in it.</p>
+</h:panelGroup>
 
 <h:form>
     <div class="form-group">

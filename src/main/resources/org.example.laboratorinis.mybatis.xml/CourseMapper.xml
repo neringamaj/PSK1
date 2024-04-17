@@ -59,4 +59,19 @@
     select ID, NAME, YEAR
     from PUBLIC.COURSE
   </select>
+  <!-- Additional mapper for Course to include Students -->
+  <resultMap id="CourseWithStudentsMap" type="Course">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="YEAR" jdbcType="INTEGER" property="year" />
+    <collection property="students" ofType="Student" column="course_id" select="selectStudentsForCourse(id)"/>
+  </resultMap>
+
+  <select id="selectCourseById" parameterType="Integer" resultMap="CourseWithStudentsMap">
+    SELECT * FROM Course WHERE id = #{id}
+  </select>
+
+  <select id="selectStudentsForCourse" parameterType="Integer" resultType="Student">
+    SELECT * FROM Student WHERE course_id = #{id}
+  </select>
 </mapper>

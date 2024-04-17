@@ -1,7 +1,5 @@
 package org.example.laboratorinis.persistence.dao;
 
-import org.example.laboratorinis.entities.Course;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;

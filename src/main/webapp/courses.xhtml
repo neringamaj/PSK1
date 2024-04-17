@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 <h:body>
     <table>
         <thead>
@@ -23,9 +23,9 @@
         </tbody>
     </table>
     <h:form>
-        <h:inputText value="#{courses.courseToCreate.name}" required="true" placeholder="Course name"/>
-        <h:inputText value="#{courses.courseToCreate.year}" required="true" placeholder="Course year"/>
-        <h:commandButton value="Add new course" actionListener="#{courses.createCourse()}" action="index?faces-redirect=true"/>
+        <h:inputText value="#{courses.courseToCreate.name}" required="true" a:placeholder="Course name"/>
+        <h:inputText value="#{courses.courseToCreate.year}" required="true" a:placeholder="Course year"/>
+        <h:commandButton value="Add new course" actionListener="#{courses.createCourse()}" action="courses?faces-redirect=true"/>
     </h:form>
     <h:link outcome="MyBatis/coursesMyBatis" value="MyBatis implementation"/>
 </h:body>

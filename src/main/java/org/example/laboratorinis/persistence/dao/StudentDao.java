@@ -52,10 +52,4 @@ public class StudentDao {
         return em.createNamedQuery("Student.findAllCourseStudents", Student.class)
                 .setParameter("id", id)
                 .getResultList();}
-
-    public Student findByNameAndSurname(String name, String surname) {
-        return em.createNamedQuery("Student.findByNameAndSurname", Student.class)
-                .setParameter("name", name).setParameter("surname",surname)
-                .getSingleResult();}
-
 }

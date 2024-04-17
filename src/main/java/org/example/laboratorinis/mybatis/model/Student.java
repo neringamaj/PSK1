@@ -1,5 +1,7 @@
 package org.example.laboratorinis.mybatis.model;
 
+import java.util.List;
+
 public class Student {
     /**
      *
@@ -131,5 +133,20 @@ public class Student {
      */
     public void setCourseId(Integer courseId) {
         this.courseId = courseId;
+    }
+
+    //additionally defining many to many relationship
+    private List<Extracurricular> extracurriculars;
+
+    public void setExtracurriculars(List<Extracurricular> extracurriculars) {
+        this.extracurriculars = extracurriculars;
+    }
+
+    public void addExtracurricular(Extracurricular extracurriculars) {
+        this.extracurriculars.add(extracurriculars);
+    }
+
+    public List<Extracurricular> getExtracurriculars() {
+        return extracurriculars;
     }
 }
