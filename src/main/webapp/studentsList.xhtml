@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<head>
+    <title>All students list</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h:form rendered="#{not empty students.allStudents}">
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Year</th>
+            <th>Course</th>
+            <th>Extracurriculars</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ui:repeat value="#{students.allStudents}" var="student">
+            <tr>
+                <td>#{student.id}</td>
+                <td>#{student.name}</td>
+                <td>#{student.surname}</td>
+                <td>#{student.course.year}</td>
+                <td>#{student.course.name}</td>
+                <td>
+                    <ui:repeat value="#{student.extracurricular}" var="extracurricular">
+                        <ul>
+                            <li>#{extracurricular.name}</li>
+                        </ul>
+                    </ui:repeat>
+                </td>
+                <td>
+                    <h:commandButton value="Delete" action="#{students.deleteStudent(student.id)}" immediate="true">
+                    </h:commandButton>
+                </td>
+            </tr>
+        </ui:repeat>
+        </tbody>
+    </table>
+</h:form>
+
+<h:panelGroup rendered="#{empty students.allStudents}">
+    <p>No students exist yet.</p>
+</h:panelGroup>
+
+<h:form>
+    <h:inputText value="#{students.studentToCreate.name}" required="true" a:placeholder="Student name"/>
+    <h:inputText value="#{students.studentToCreate.surname}" required="true" a:placeholder="Student surname"/>
+    <h:selectOneMenu value="#{students.course.id}" required="true">
+        <f:selectItem itemLabel="Select Course" itemValue="" noSelectionOption="true" />
+        <f:selectItems value="#{courses.allCourses}" var="course"
+                       itemLabel="#{course.name} #{course.year}" itemValue="#{course.id}" />
+    </h:selectOneMenu>
+    <h:commandButton value="Add new student" actionListener="#{students.createStudent()}" action="studentsList?faces-redirect=true"/>
+</h:form>
+
+<h:link outcome="index" value="Back to index page"/>
+</body>
+</html>

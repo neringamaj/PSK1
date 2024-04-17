@@ -1,4 +1,4 @@
-package org.example.laboratorinis.persistance;
+package org.example.laboratorinis.persistence;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
